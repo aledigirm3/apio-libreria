@@ -66,9 +66,9 @@ router.put('/libro/:id', (req,res) => {
     })
     .catch(err => res.status(500).send("codifica id non valida"))
 })
-
+//rimuovi libro per id
 router.delete('/libro/:id', (req,res) => {
-    libroModel.findByIdAndRemove(req.params.id)
+    libroModel.findByIdAndDelete(req.params.id)
     .then(doc => {
         if(!doc)
         return res.status(400).send("id libro inesistente");
@@ -79,5 +79,18 @@ router.delete('/libro/:id', (req,res) => {
     })
 })
 
+//rimuovi tutti i libri
+router.delete('/libro', async (req,res) => {
+    let libri = await libroModel.find()
+    .then(doc =>{
+        return doc.length})
+    .catch(err => res.json(err))
+    if(libri == 0)
+    return res.status(400).send("la collezione è gia vuota"); 
+    libroModel.deleteMany()
+    .then(doc => {
+        res.status(200).send("collezione eliminata")
+    }).catch(err => res.status(500).json(err))
+})
 
 module.exports = router;
