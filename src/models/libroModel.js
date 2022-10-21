@@ -1,7 +1,10 @@
 let mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
-let libroSchema = new mongoose.Schema({
+let libroSchema = new Schema({
     titolo: String,
     autore: String
 })
-module.exports = mongoose.model('libro', libroSchema)
+const libroModel = mongoose.model('Libro', libroSchema, 'libri')
+module.exports = { libroSchema, libroModel }
+/* module.exports = mongoose.model('libro', libroSchema) */

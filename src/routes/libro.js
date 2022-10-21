@@ -1,8 +1,28 @@
-let libroModel = require('../models/libroModel');
+const { buildRouter } = require('express-toolkit')
+const DinosaurController = require('../controller/libroController.js')
+
+
+module.exports = buildRouter
+    ({
+        controller: DinosaurController,
+        options: {find: true,
+            findById: true,
+            create: true,
+            updateById: true,
+            updateByQuery: true,
+            deleteById: true,
+            deleteByQuery: true,
+            count: true,
+            patchById: true,
+            replaceById: true}
+    })
+
+
+/* let libroModel = require('../models/libroModel');
 let express = require('express');
 let router = express.Router();
 
-//new libro
+ //new libro
 router.post('/libro',(req,res) => {
     if(!req.body.titolo || !req.body.autore)
     return res.status(400).send("non è presente il corpo")
@@ -93,4 +113,4 @@ router.delete('/libro', async (req,res) => {
     }).catch(err => res.status(500).json(err))
 })
 
-module.exports = router;
+module.exports = router; */
