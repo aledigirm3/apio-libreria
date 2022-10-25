@@ -1,7 +1,6 @@
 let mongoose = require('mongoose');
 let express = require('express')
 let app = express();
-
 let libroRoute = require('./routes/libro');
 let bodyParser = require('body-parser');
 app.use(express.json())

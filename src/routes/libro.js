@@ -1,23 +1,25 @@
 const { buildRouter } = require('express-toolkit')
-const DinosaurController = require('../controller/libroController.js')
-
-
-module.exports = buildRouter
+const LibroController = require('../controller/libroController.js')
+let libroModel = require('../models/libroModel');
+const router = buildRouter
     ({
-        controller: DinosaurController,
-        options: {find: true,
+        controller: LibroController,
+        endpoints: {
+            find: true,
             findById: true,
             create: true,
             updateById: true,
             updateByQuery: true,
             deleteById: true,
             deleteByQuery: true,
-            count: true,
+            count: false,
             patchById: true,
-            replaceById: true}
+            replaceById: true
+        }
     })
 
 
+module.exports = router
 /* let libroModel = require('../models/libroModel');
 let express = require('express');
 let router = express.Router();
